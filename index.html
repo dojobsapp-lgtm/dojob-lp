@@ -6,6 +6,16 @@
 <title>DoJobApp - Encontre acompanhantes perto de voce</title>
 <meta name="description" content="DoJobApp - Adult escort directory app for Brazil. Verified profiles with direct WhatsApp contact.">
 <meta name="juicyads-site-verification" content="73f8d665406aecc1614d845388a75677">
+
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#6C63FF">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DoJobApp">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#0a0a14; color:#fff; overflow-x:hidden; }
@@ -23,6 +33,27 @@ h1 span { background:linear-gradient(135deg,#6C63FF,#FF4D6D); -webkit-background
 .btns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:50px; }
 .btn-p { background:linear-gradient(135deg,#6C63FF,#8B5CF6); color:#fff; border:none; border-radius:14px; padding:15px 32px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; text-decoration:none; display:inline-block; }
 .btn-s { background:rgba(255,255,255,0.06); color:#fff; border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:15px 32px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; text-decoration:none; display:inline-block; }
+
+/* Banner de instalacao PWA */
+#install-banner { display:none; position:fixed; bottom:0; left:0; right:0; z-index:999; background:#1a1a2e; border-top:1px solid rgba(108,99,255,0.3); padding:16px 20px; }
+.install-inner { max-width:500px; margin:0 auto; display:flex; align-items:center; gap:14px; }
+.install-icon { width:46px; height:46px; border-radius:12px; background:#6C63FF; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:16px; flex-shrink:0; }
+.install-text { flex:1; }
+.install-title { font-size:14px; font-weight:700; margin-bottom:2px; }
+.install-sub { font-size:12px; color:rgba(255,255,255,0.45); }
+.install-btn { background:#6C63FF; color:#fff; border:none; border-radius:10px; padding:10px 18px; font-size:13px; font-weight:700; cursor:pointer; font-family:inherit; white-space:nowrap; }
+.install-close { background:none; border:none; color:rgba(255,255,255,0.3); cursor:pointer; font-size:20px; padding:4px; }
+
+/* Modal instrucoes iOS */
+#ios-modal { display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.8); align-items:flex-end; justify-content:center; }
+#ios-modal.show { display:flex; }
+.ios-box { background:#1a1a2e; border-radius:20px 20px 0 0; padding:28px 24px 40px; width:100%; max-width:500px; border-top:1px solid rgba(108,99,255,0.3); }
+.ios-title { font-size:17px; font-weight:800; margin-bottom:20px; text-align:center; }
+.ios-step { display:flex; align-items:flex-start; gap:14px; margin-bottom:18px; }
+.ios-num { width:28px; height:28px; border-radius:50%; background:#6C63FF; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; flex-shrink:0; }
+.ios-step-text { font-size:14px; color:rgba(255,255,255,0.7); line-height:1.6; }
+.ios-step-text strong { color:#fff; }
+.ios-close { width:100%; background:rgba(255,255,255,0.08); border:none; border-radius:12px; padding:14px; color:#fff; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:8px; }
 
 .mockup { width:100%; max-width:280px; background:#0f0f1e; border-radius:28px; border:1px solid rgba(255,255,255,0.08); overflow:hidden; box-shadow:0 40px 80px rgba(0,0,0,0.6); }
 .mk-h { background:#0a0a14; padding:12px 14px; border-bottom:1px solid #1a1a2e; display:flex; justify-content:space-between; align-items:center; }
@@ -60,6 +91,17 @@ h1 span { background:linear-gradient(135deg,#6C63FF,#FF4D6D); -webkit-background
 .cta h2 { font-size:clamp(26px,5vw,44px); font-weight:800; margin-bottom:14px; letter-spacing:-0.5px; }
 .cta p { color:rgba(255,255,255,0.4); font-size:15px; margin-bottom:28px; }
 
+/* Secao instalar */
+.install-section { padding:60px 24px; max-width:700px; margin:0 auto; }
+.install-cards { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px; }
+@media(max-width:500px){ .install-cards { grid-template-columns:1fr; } }
+.os-card { background:#0f0f1e; border:1px solid #1a1a2e; border-radius:16px; padding:24px; text-align:center; }
+.os-icon { font-size:36px; margin-bottom:12px; }
+.os-title { font-size:16px; font-weight:800; margin-bottom:6px; }
+.os-desc { font-size:13px; color:rgba(255,255,255,0.4); line-height:1.6; margin-bottom:16px; }
+.os-btn { display:block; width:100%; background:#6C63FF; color:#fff; border:none; border-radius:12px; padding:13px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; text-decoration:none; }
+.os-btn.ios-btn { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); }
+
 footer { background:#080810; border-top:1px solid #1a1a2e; padding:28px 24px; text-align:center; }
 footer p { color:rgba(255,255,255,0.18); font-size:12px; line-height:2; }
 footer a { color:#6C63FF; text-decoration:none; }
@@ -69,9 +111,46 @@ footer a { color:#6C63FF; text-decoration:none; }
 
 <div class="hero-glow"></div>
 
+<!-- Banner instalacao Android/Desktop -->
+<div id="install-banner">
+  <div class="install-inner">
+    <div class="install-icon">DJ</div>
+    <div class="install-text">
+      <div class="install-title">Instalar DoJobApp</div>
+      <div class="install-sub">Adicione na tela inicial — rapido e gratis</div>
+    </div>
+    <button class="install-btn" id="install-btn">Instalar</button>
+    <button class="install-close" id="install-close">x</button>
+  </div>
+</div>
+
+<!-- Modal instrucoes iOS -->
+<div id="ios-modal">
+  <div class="ios-box">
+    <div class="ios-title">Instalar no iPhone</div>
+    <div class="ios-step">
+      <div class="ios-num">1</div>
+      <div class="ios-step-text">Toque no botao <strong>Compartilhar</strong> na barra do Safari (icone de caixa com seta para cima)</div>
+    </div>
+    <div class="ios-step">
+      <div class="ios-num">2</div>
+      <div class="ios-step-text">Role para baixo e toque em <strong>"Adicionar a Tela de Inicio"</strong></div>
+    </div>
+    <div class="ios-step">
+      <div class="ios-num">3</div>
+      <div class="ios-step-text">Toque em <strong>Adicionar</strong> no canto superior direito</div>
+    </div>
+    <div class="ios-step">
+      <div class="ios-num">4</div>
+      <div class="ios-step-text">Pronto! O icone do <strong>DoJobApp</strong> aparece na sua tela inicial</div>
+    </div>
+    <button class="ios-close" onclick="document.getElementById('ios-modal').classList.remove('show')">Entendi</button>
+  </div>
+</div>
+
 <nav>
   <span class="nav-logo">DoJobApp</span>
-  <a href="#baixar" class="nav-btn">Baixar</a>
+  <a href="#instalar" class="nav-btn">Instalar</a>
 </nav>
 
 <section class="hero">
@@ -79,8 +158,8 @@ footer a { color:#6C63FF; text-decoration:none; }
   <h1>Encontre acompanhantes<br><span>perto de voce</span></h1>
   <p class="hero-sub">Perfis verificados, contato direto pelo WhatsApp. Discreto e seguro.</p>
   <div class="btns">
-    <a href="#baixar" class="btn-p">Baixar para Android</a>
-    <a href="#ios" class="btn-s">Baixar para iOS</a>
+    <a href="#instalar" class="btn-p">Instalar agora</a>
+    <a href="#anunciar" class="btn-s">Anunciar</a>
   </div>
 
   <div class="mockup">
@@ -90,27 +169,15 @@ footer a { color:#6C63FF; text-decoration:none; }
     </div>
     <div class="mk-card">
       <div class="mk-foto" style="background:linear-gradient(135deg,#6C63FF,#FF4D6D)"></div>
-      <div>
-        <div class="mk-nome">Amanda Silva</div>
-        <div class="mk-loc">Sao Paulo, SP</div>
-        <div class="mk-preco">R$400/h &middot; Pix &middot; Hotel</div>
-      </div>
+      <div><div class="mk-nome">Amanda Silva</div><div class="mk-loc">Sao Paulo, SP</div><div class="mk-preco">R$400/h &middot; Pix &middot; Hotel</div></div>
     </div>
     <div class="mk-card">
       <div class="mk-foto" style="background:linear-gradient(135deg,#FF4D6D,#f59e0b)"></div>
-      <div>
-        <div class="mk-nome">Isabella Luxo</div>
-        <div class="mk-loc">Sao Paulo, SP</div>
-        <div class="mk-preco">R$800/h &middot; Cartao</div>
-      </div>
+      <div><div class="mk-nome">Isabella Luxo</div><div class="mk-loc">Sao Paulo, SP</div><div class="mk-preco">R$800/h &middot; Cartao</div></div>
     </div>
     <div class="mk-card">
       <div class="mk-foto" style="background:linear-gradient(135deg,#22c55e,#6C63FF)"></div>
-      <div>
-        <div class="mk-nome">Valentina Rox</div>
-        <div class="mk-loc">Sao Paulo, SP</div>
-        <div class="mk-preco">R$300/h &middot; Pix</div>
-      </div>
+      <div><div class="mk-nome">Valentina Rox</div><div class="mk-loc">Sao Paulo, SP</div><div class="mk-preco">R$300/h &middot; Pix</div></div>
     </div>
   </div>
 </section>
@@ -147,9 +214,9 @@ footer a { color:#6C63FF; text-decoration:none; }
       <div class="fcard-desc">Veja quem esta disponivel agora em tempo real.</div>
     </div>
     <div class="fcard">
-      <div class="fcard-icon" style="background:rgba(108,99,255,0.15);color:#6C63FF">S</div>
-      <div class="fcard-title">Seguranca em primeiro lugar</div>
-      <div class="fcard-desc">Sistema de denuncias integrado. Nunca pague adiantado.</div>
+      <div class="fcard-icon" style="background:rgba(108,99,255,0.15);color:#6C63FF">M</div>
+      <div class="fcard-title">Busca por proximidade</div>
+      <div class="fcard-desc">Veja profissionais no mapa perto de voce com filtro de raio.</div>
     </div>
   </div>
 </div>
@@ -160,7 +227,7 @@ footer a { color:#6C63FF; text-decoration:none; }
       <div class="sec-label">Para profissionais</div>
       <h2>Anuncie e receba mais clientes</h2>
       <p>Crie seu perfil em minutos, adicione fotos e comece a receber contatos pelo WhatsApp.</p>
-      <a href="#baixar" class="btn-p">Criar perfil gratis</a>
+      <a href="#instalar" class="btn-p">Criar perfil gratis</a>
     </div>
     <div>
       <div class="plano">
@@ -179,14 +246,25 @@ footer a { color:#6C63FF; text-decoration:none; }
   </div>
 </div>
 
-<section class="cta" id="baixar">
-  <h2>Pronto para comecar?</h2>
-  <p>Baixe gratuitamente para Android</p>
-  <div class="btns" id="baixar">
-    <a href="#" class="btn-p" style="font-size:16px;padding:14px 32px;">Android (APK)</a>
-    <a href="#" id="ios" class="btn-s" style="font-size:16px;padding:14px 32px;">iOS (TestFlight)</a>
+<!-- Secao instalar -->
+<section class="install-section" id="instalar">
+  <div class="sec-label">Disponivel agora</div>
+  <div class="sec-title">Instale em segundos</div>
+  <div class="install-cards">
+    <div class="os-card">
+      <div class="os-icon">🤖</div>
+      <div class="os-title">Android</div>
+      <div class="os-desc">Instale direto pelo navegador ou baixe o APK</div>
+      <a href="#" id="android-install-btn" class="os-btn">Instalar no Android</a>
+    </div>
+    <div class="os-card">
+      <div class="os-icon">🍎</div>
+      <div class="os-title">iPhone</div>
+      <div class="os-desc">Adicione na tela inicial pelo Safari em 3 passos</div>
+      <button class="os-btn ios-btn" onclick="document.getElementById('ios-modal').classList.add('show')">Ver como instalar</button>
+    </div>
   </div>
-  <p style="margin-top:14px;font-size:12px;color:rgba(255,255,255,0.2);">iOS requer o app TestFlight instalado</p>
+  <p style="text-align:center;margin-top:20px;font-size:12px;color:rgba(255,255,255,0.2);">Sem necessidade de loja de aplicativos</p>
 </section>
 
 <footer>
@@ -197,5 +275,67 @@ footer a { color:#6C63FF; text-decoration:none; }
   <p style="margin-top:10px;">2026 DoJobApp. Todos os direitos reservados.</p>
 </footer>
 
+<script>
+// Registrar service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
+}
+
+// Capturar evento de instalacao Android/Chrome
+let deferredPrompt = null;
+const banner = document.getElementById('install-banner');
+const installBtn = document.getElementById('install-btn');
+const androidBtn = document.getElementById('android-install-btn');
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Mostrar banner depois de 3 segundos
+  setTimeout(() => { banner.style.display = 'block'; }, 3000);
+});
+
+function triggerInstall() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      banner.style.display = 'none';
+    });
+  }
+}
+
+installBtn.addEventListener('click', triggerInstall);
+androidBtn.addEventListener('click', e => {
+  e.preventDefault();
+  if (deferredPrompt) {
+    triggerInstall();
+  } else {
+    // APK fallback
+    window.location.href = '#';
+  }
+});
+
+document.getElementById('install-close').addEventListener('click', () => {
+  banner.style.display = 'none';
+});
+
+// iOS - detectar Safari
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+const isInstalled = window.navigator.standalone === true;
+
+if (isIOS && isSafari && !isInstalled) {
+  // No iOS/Safari mostrar instrucoes automaticamente depois de 4 segundos
+  setTimeout(() => {
+    document.getElementById('ios-modal').classList.add('show');
+  }, 4000);
+}
+
+// Se ja instalado como PWA, esconder secao de instalar
+if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+  document.getElementById('instalar').style.display = 'none';
+  banner.style.display = 'none';
+}
+</script>
 </body>
 </html>
